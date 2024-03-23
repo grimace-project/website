@@ -1,15 +1,31 @@
 import type { MetaFunction } from "@remix-run/node";
+import Grimace from "grimace";
+import { useEffect, useRef } from "react";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
-    { name: "description", content: "Welcome to Remix!" },
+    { title: "Grimace" },
+    {
+      name: "description",
+      content: "Grimace shows you what emotions look like",
+    },
   ];
 };
 
 export default function Index() {
+  const containerRef = useRef(null);
+  const grimaceRef = useRef(null);
+
+  useEffect(() => {
+    if (!grimaceRef.current) {
+      const grimace = new Grimace(containerRef.current);
+      grimaceRef.current = grimace;
+    }
+  }, []);
+
   return (
     <div style={{ fontFamily: "system-ui, sans-serif", lineHeight: "1.8" }}>
+      <div className="container" ref={containerRef}></div>
       <h1>Welcome to Remix</h1>
       <ul>
         <li>
