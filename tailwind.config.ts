@@ -5,12 +5,14 @@ export default {
   theme: {
     extend: {},
     colors: {
+      white: '#FFFFFF',
       background: '#F7F7F7',
       grey: '#242424',
       home: '#00c557',
       developer: '#628EFF',
       help: '#FFA91F',
       about: '#FB0B44',
+      link: '#757575',
     },
     fontFamily: {
       display: ['brandon-grotesque', 'sans-serif'],
@@ -22,6 +24,7 @@ export default {
       knob: "url('/images/knob.svg')",
       shuffle: "url('/images/shuffle@2x.png')",
       shuffleActive: "url('/images/shuffle-active@2x.png')",
+      logo: "url('/images/grimace.svg')",
     },
   },
   plugins: [],
