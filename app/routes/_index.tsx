@@ -1,5 +1,5 @@
 import type { MetaFunction } from '@remix-run/node'
-import { useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import Grimace from 'grimace'
 
 import '../main.scss'
@@ -19,11 +19,13 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   const containerRef = useRef<HTMLElement>()
   const grimaceRef = useRef<Grimace>()
+  const [grimace, setGrimace] = useState<Grimace>()
 
   useEffect(() => {
     if (!grimaceRef.current && containerRef.current) {
       const grimace = new Grimace(containerRef.current)
       grimaceRef.current = grimace
+      setGrimace(grimace)
     }
   }, [])
 
@@ -62,7 +64,7 @@ export default function Index() {
       <div id="wrapper" className="home">
         <div className="flex flex-col sm:flex-row">
           <div className="basis-5/12 aspect-square max-h-[45vh] sm:max-h-full" ref={containerRef}></div>
-          <SliderBubble />
+          <SliderBubble grimace={grimace} />
         </div>
 
         <h2 className="font-display text-2xl">Grimace shows you what emotions look like.</h2>
